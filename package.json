@@ -1,0 +1,24 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "Building an API for a social network application where users can share their thoughts, react to friends’ thoughts, and create a friend list using Express.js, MonogoDB and Mongoose ODM.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpjp2328/social-network-API.git"
+  },
+  "author": "Jpjp2328",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jpjp2328/social-network-API/issues"
+  },
+  "homepage": "https://github.com/jpjp2328/social-network-API#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.8.1"
+  }
+}
