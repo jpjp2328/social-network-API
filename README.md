@@ -1,4 +1,4 @@
-# social-network-API
+# Social Network API (Backend)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
@@ -31,6 +31,7 @@ npm i OR npm install
 
 ## Demo
 - Refer to this Demo Video below to guide you:
+
 https://user-images.githubusercontent.com/110818668/209149171-3243b2c4-c075-437f-80c6-112ae75abc8a.mp4
 
 
