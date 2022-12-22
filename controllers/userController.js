@@ -12,10 +12,10 @@ module.exports = {
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
             .select('-__v')
-            .then((user) => 
+            .then((user) =>
                 !user
-                   ? res.status(404).json({ message: 'No user with that ID'})
-                   : res.json(user)
+                    ? res.status(404).json({ message: 'No user with that ID' })
+                    : res.json(user)
             )
             .catch((err) => res.status(500).json(err));
     },
@@ -23,11 +23,30 @@ module.exports = {
     // Create a user - createUser
     createUser(req, res) {
         User.create(req.body)
-        .then((user) => res.json(user))
-        .catch((err) => res.status(500).json(err));
+            .then((user) => res.json(user))
+            .catch((err) => res.status(500).json(err));
     },
 
     // Update a user - updateUser
+    updateUser(req, res) {
+        User.findOneAndUpdate(
+            {
+                _id: req.params.userId
+            },
+            {
+                $set: req.body
+            },
+            {
+                new: true, runValidators: true
+            }
+        )
+            .then((user) =>
+                !user
+                    ? res.status(404).json({ message: 'No user with that ID' })
+                    : res.json(user)
+            )
+            .catch((err) => res.status(500).json(err));
+    },
 
     // Delete a user - deleteUser
 
