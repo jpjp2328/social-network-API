@@ -1,3 +1,4 @@
+const { trusted } = require('mongoose');
 const { User, Thought } = require('../models');
 
 module.exports = {
@@ -37,7 +38,7 @@ module.exports = {
                 $set: req.body
             },
             {
-                new: true
+                new: true, runValidators: true
             },
         )
             .then((thought) =>
@@ -69,15 +70,15 @@ module.exports = {
                 $addToSet: { reactions: req.body }
             },
             {
-                new: true
+                new: true, runValidators: true
             },
         )
-        .then((thought) => 
-        !thought
-        ? res.status(404).json({ message: 'No thought with that ID' })
-        : res.json(thought)
-        )
-        .catch((err) => res.status(500).json(err));
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: 'No thought with that ID' })
+                    : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err));
     },
 
     // Delete a reaction - deleteReaction
@@ -93,11 +94,11 @@ module.exports = {
                 new: true
             },
         )
-        .then((thought) => 
-        !thought
-        ? res.status(404).json({ message: 'No thought with that ID' })
-        : res.json(thought)
-        )
-        .catch((err) => res.status(500).json(err));
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: 'No thought with that ID' })
+                    : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err));
     },
 };

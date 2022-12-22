@@ -84,7 +84,7 @@ module.exports = {
 
     // Delete a friend - deleteFriend
     deleteFriend(req, res) {
-        User.findOneAndDelete(
+        User.findOneAndUpdate(
             {
                 _id: req.params.userId
             },
