@@ -51,18 +51,55 @@ module.exports = {
     // Delete a user - deleteUser
     deleteUser(req, res) {
         User.findOneAndDelete({ _id: req.params.userId })
-        .then((user) => 
-        !user
-        ? res.status(404).json({ message: 'No user with that ID' })
-        // remove thoughts when user is deleted
-        : Thought.deleteMany({ _id: {$in: user.thoughts} })
-        )
-        .then(() => res.json({ message: 'User and associated thoughts deleted!' }))
-        .catch((err) => res.status(500).json(err));
+            .then((user) =>
+                !user
+                    ? res.status(404).json({ message: 'No user with that ID' })
+                    // remove thoughts when user is deleted
+                    : Thought.deleteMany({ _id: { $in: user.thoughts } })
+            )
+            .then(() => res.json({ message: 'User and associated thoughts deleted!' }))
+            .catch((err) => res.status(500).json(err));
     },
 
     // Add a friend - addFriend
+    addFriend(req, res) {
+        User.findOneAndUpdate(
+            {
+                _id: req.params.userId
+            },
+            {
+                $addToSet: { friends: req.params.friendId }
+            },
+            {
+                new: true
+            },
+        )
+            .then((user) =>
+                !user
+                    ? res.status(404).json({ message: 'No user with that ID' })
+                    : res.json(user)
+            )
+            .catch((err) => res.status(500).json(err));
+    },
 
     // Delete a friend - deleteFriend
-
-}
+    deleteFriend(req, res) {
+        User.findOneAndDelete(
+            {
+                _id: req.params.userId
+            },
+            {
+                $pull: { friends: req.params.friendId }
+            },
+            {
+                new: true
+            },
+        )
+            .then((user) =>
+                !user
+                    ? res.status(404).json({ message: 'No user with that ID' })
+                    : res.json(user)
+            )
+            .catch((err) => res.status(500).json(err));
+    },
+};
