@@ -30,7 +30,7 @@ npm i OR npm install
 - Users could also create and delete 'Reactions' they have to a 'Thought"
 
 ## Demo
-- Refer to this Demo Video below to guide you:
+- Refer to this Demo Video below to guide you (fullscreen for better quality) :
 
 https://user-images.githubusercontent.com/110818668/209149171-3243b2c4-c075-437f-80c6-112ae75abc8a.mp4
 
